@@ -381,8 +381,6 @@ def execute_CoachHooK(
 
 
 
-
-
 def apply_CoachHooK_wohk_to_model(
     model: AutoModelForCausalLM,
     tok: AutoTokenizer,
@@ -409,7 +407,7 @@ def apply_CoachHooK_wohk_to_model(
     accu_params = {}
     accu_params_set = []
     for i,chunk in enumerate(_chunks(requests, hparams.batch_size)):
-        deltas, accu_params = execute_comba_wohk(model, tok, chunk, hparams, accu_params, cache_template=cache_template)
+        deltas, accu_params = execute_CoachHooK_wohk(model, tok, chunk, hparams, accu_params, cache_template=cache_template)
     
         with torch.no_grad():
             for w_name, (key_mat, val_mat) in deltas.items():
@@ -444,7 +442,9 @@ def apply_CoachHooK_wohk_to_model(
     return model, weights_copy, accu_params_set
 
 
-def execute_comba_wohk(
+
+
+def execute_CoachHooK_wohk(
     model: AutoModelForCausalLM,
     tok: AutoTokenizer,
     requests: List[Dict],

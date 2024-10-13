@@ -49,7 +49,7 @@ $$
     <figcaption>Figure 1: Single layer update with hook layer (residual connections are omitted)</figcaption>
 </figure> -->
 
-![single_layer_update](Figures/single_layer_update.png)
+![single_layer_update](Figures/single_layer_update.JPG)
 
 $\parallel . \parallel$ means calculate the L2-norm over the keys' dimension ($m$). For each updating of a single batch edits, the temporary hook layer is used at the beginning to ensure $\Delta$ is computed based on $W_{h}^l$. After the weights update, the validated hook layer is applied to determine whether to use the original layer or hook layer for each token. This process can be implemented iteratively to support consecutive batch editing. Note that the temporary hook layer weight of a new iteration is copied from the validated hook layer weight of the previous iteration. So, the validated hook layer keeps track of the updated layer from previous edits by retaining the weight from the previous iteration.
 
@@ -62,7 +62,7 @@ $\parallel . \parallel$ means calculate the L2-norm over the keys' dimension ($m
     <figcaption>Figure 2: Multiple layer update with hook layer (Attention module and the first layer of FFN are omitted)</figcaption>
 </figure> -->
 
-![Multilayer_update](Figures/Multilayer_update.png)
+![Multilayer_update](Figures/Multilayer_update.JPG)
 
 The value vector $v_i$ is first computed at the last editing layer, and then we iteratively insert a fraction of the residual to each editing layer (I, II, III). Since changing one layer would affect the activations of downstream layers, recollection of the activations is conducted after each iteration. At the beginning, temporary hook layers are initialized to all editing layers. Once the hook layer weight is updated, it is replaced by the validated hook layer (1, 2, 3).
 
