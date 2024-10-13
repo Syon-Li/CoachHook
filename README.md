@@ -49,7 +49,7 @@ $$
     <figcaption>Figure 1: Single layer update with hook layer (residual connections are omitted)</figcaption>
 </figure> -->
 
-![single_layer_update](./Figures/single_layer_update.jpg)
+![single_layer_update](/Figures/single_layer_update.jpg)
 
 **Figure 1: Single layer update with hook layer (residual connections are omitted)**
 
@@ -64,7 +64,7 @@ $\parallel . \parallel$ means calculate the L2-norm over the keys' dimension ($m
     <figcaption>Figure 2: Multiple layer update with hook layer (Attention module and the first layer of FFN are omitted)</figcaption>
 </figure> -->
 
-![Multilayer_update](./Figures/Multilayer_update.jpg)
+![Multilayer_update](/Figures/Multilayer_update.jpg)
 
 **Figure 2: Multiple layer update with hook layer (Attention module and the first layer of FFN are omitted)**
 
