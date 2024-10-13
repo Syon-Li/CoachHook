@@ -49,7 +49,7 @@ $$
     <figcaption>Figure 1: Single layer update with hook layer (residual connections are omitted)</figcaption>
 </figure> -->
 
-![single_layer_update](./Figures/single_layer_update.png)
+![single_layer_update](Figures/single_layer_update.png)
 
 $\parallel . \parallel$ means calculate the L2-norm over the keys' dimension ($m$). For each updating of a single batch edits, the temporary hook layer is used at the beginning to ensure $\Delta$ is computed based on $W_{h}^l$. After the weights update, the validated hook layer is applied to determine whether to use the original layer or hook layer for each token. This process can be implemented iteratively to support consecutive batch editing. Note that the temporary hook layer weight of a new iteration is copied from the validated hook layer weight of the previous iteration. So, the validated hook layer keeps track of the updated layer from previous edits by retaining the weight from the previous iteration.
 
@@ -62,7 +62,7 @@ $\parallel . \parallel$ means calculate the L2-norm over the keys' dimension ($m
     <figcaption>Figure 2: Multiple layer update with hook layer (Attention module and the first layer of FFN are omitted)</figcaption>
 </figure> -->
 
-![Multilayer_update](./Figures/Multilayer_update.png)
+![Multilayer_update](Figures/Multilayer_update.png)
 
 The value vector $v_i$ is first computed at the last editing layer, and then we iteratively insert a fraction of the residual to each editing layer (I, II, III). Since changing one layer would affect the activations of downstream layers, recollection of the activations is conducted after each iteration. At the beginning, temporary hook layers are initialized to all editing layers. Once the hook layer weight is updated, it is replaced by the validated hook layer (1, 2, 3).
 
@@ -88,16 +88,16 @@ Our experiments used ZsRE and COUNTERFACT datasets, which can be found in [here]
 
 ### Script Arguments
 
-'--stats_dir', type=str, default="./data/stats", the path of stat file
-'--model', type=str, choices=["EleutherAI/gpt-j-6B","gpt2-xl"], default="gpt2-xl", the model to use
-"--ds_dir", type=str, choices=["./editing-data/data/zsre/zsre_mend_eval.json", "./editing-data/data/counterfact/counterfact-edit.json"], default="./editing-data/data/zsre/zsre_mend_eval.json", the dataset directory
-'--consecutive', type=bool, default=False, whether the editing happens in a consecutive way
-'--bsz', type=int, default=30, the editing batch size to use
-'--mom2_update_weight', type=int, default=15000, the moment2 update weight
-'--alpha_z', type=float, default=2.2, the initial alpha
-'--num_layers', type=int, choices=range(1,8), default=8, the number of layers in the critical path to use
-'--sample', type=int, default=100, number of samples to use
-'--wohk', type=bool, default=False, whether to use the hook layer
+- '--stats_dir', type=str, default="./data/stats", the path of stat file
+- '--model', type=str, choices=["EleutherAI/gpt-j-6B","gpt2-xl"], default="gpt2-xl", the model to use
+- "--ds_dir", type=str, choices=["./editing-data/data/zsre/zsre_mend_eval.json", "./editing-data/data/counterfact/counterfact-edit.json"], default="./editing-data/data/zsre/zsre_mend_eval.json", the dataset directory
+- '--consecutive', type=bool, default=False, whether the editing happens in a consecutive way
+- '--bsz', type=int, default=30, the editing batch size to use
+- '--mom2_update_weight', type=int, default=15000, the moment2 update weight
+- '--alpha_z', type=float, default=2.2, the initial alpha
+- '--num_layers', type=int, choices=range(1,8), default=8, the number of layers in the critical path to use
+- '--sample', type=int, default=100, number of samples to use
+- '--wohk', type=bool, default=False, whether to use the hook layer
 
 
 To run the script, change the TRANSFORMERS_CACHE and HF_DATASETS_CACHE in the bash file to your directory and execute:
