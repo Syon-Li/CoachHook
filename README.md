@@ -45,7 +45,7 @@ $$
 ### Single layer update
 <figure>
     <img src="./Figures/single_layer_update.jpg"
-         alt="single_layer_update">
+         alt="single_layer_update" width="200" height="100">
     <figcaption>Figure 1: Single layer update with hook layer (residual connections are omitted)</figcaption>
 </figure>
 
