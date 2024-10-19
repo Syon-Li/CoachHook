@@ -28,13 +28,13 @@ def main():
     parser.add_argument('--model', type=str, choices=["EleutherAI/gpt-j-6B","gpt2-xl"], default="gpt2-xl", help='the model to use')
     parser.add_argument("--ds_dir", type=str, choices=["./editing-data/data/zsre/zsre_mend_eval.json", "./editing-data/data/counterfact/counterfact-edit.json"], 
                         default="./editing-data/data/zsre/zsre_mend_eval.json", help="the dataset directory")
-    parser.add_argument('--consecutive', type=bool, default=False, help='whether the editing happens in a consecutive way')
+    parser.add_argument('--consecutive', type=int, choices=[0,1], default=0, help='whether the editing happens in a consecutive way')
     parser.add_argument('--bsz', type=int, default=30, help='the editing batch size to use')
     parser.add_argument('--mom2_update_weight', type=int, default=15000, help='the moment2 update weight')
     parser.add_argument('--alpha_z', type=float, default=2.2, help='the initial alpha')
     parser.add_argument('--num_layers', type=int, choices=range(1,8), default=8, help='the number of layers in the critical path to use')
     parser.add_argument('--sample', type=int, default=100, help='number of samples to use')
-    parser.add_argument('--wohk', type=bool, default=False, help='whether to use the hook layer')
+    parser.add_argument('--wohk', type=int, choices=[0,1], default=0, help='whether to use the hook layer')
     args = parser.parse_args()
 
 

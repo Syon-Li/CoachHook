@@ -28,7 +28,7 @@ def main():
     parser.add_argument('--model', type=str, choices=["EleutherAI/gpt-j-6B","gpt2-xl"], default="gpt2-xl", help='the model to use')
     parser.add_argument("--ds_dir", type=str, choices=["./Editing_data/zsre/zsre_mend_eval.json", "./Editing_data/counterfact/counterfact-edit.json"], 
                         default="./editing-data/data/zsre/zsre_mend_eval.json", help="the dataset directory")
-    parser.add_argument('--consecutive', type=bool, default=True, help='whether the editing happens in a consecutive way')
+    parser.add_argument('--consecutive', type=int, choices=[0,1], default=0, help='whether the editing happens in a consecutive way')
     parser.add_argument('--bsz', type=int, default=30, help='the editing batch size to use')
     parser.add_argument('--mom2_update_weight', type=int, default=15000, help='the moment2 update weight')
     parser.add_argument('--alpha_z', type=float, default=2.2, help='the initial alpha')
