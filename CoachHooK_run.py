@@ -55,7 +55,7 @@ def main():
     hparams.stats_dir = args.stats_dir
     hparams.layers = hparams.layers[-args.num_layers:]
     hparams.batch_size = args.bsz
-    consecutive = args.consecutive
+    consecutive = True if args.consecutive else False
     hparams.mom2_update_weight = args.mom2_update_weight
     alpha_z = args.alpha_z
     eval_interval = 20*hparams.batch_size
@@ -67,7 +67,7 @@ def main():
     model_name = model_id.rpartition("/")[-1]
     sample = args.sample
     # print(hparams)
-    wohk = args.wohk
+    wohk = True if args.wohk else False
 
 
 
